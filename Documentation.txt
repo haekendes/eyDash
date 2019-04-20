@@ -1,0 +1,103 @@
+
+
+2019-04-16
+Inbetriebnahme des Raspberry pi erfolgreich.
+Erste Probleme mit der Hdmi Skalierung des Bildschirms.
+Dies konnte gelöst werden, indem overscanning in der system config unter /boot/config.txt
+angeschaltet wurde.
+Zum editieren der config datei waren root Rechte erforderlich, die man nur in der Linux Konsole
+durch das Schlüsselwort "sudo" erlangt; dieses gibt man beim Öffnen der config datei mit in die
+Konsole ein.
+
+____________________________________________________________________
+
+Test: An- und Auschalten des Bildschirms vom Raspberry Pi aus
+
+	1. Über die Linux Konsole - Hdmi Power Cut
+Mit dem Befehl "vcgencmd display_power 0" wird die Stromversorgung des Hdmi Anschlusses
+abgeschaltet, woraufhin der Bildschirm sich selbst nach einer Weile abschalten sollte.
+Wenn man den Parameter 0 durch 1 ersetzt, wird der Hdmi Anschluss wieder mit Strom versorgt.
+
+Das Kommando "tvservice --off" erbringt das selbe Ergebnis, jedoch kann der Bildschirm durch
+"tvservice --preferred" nicht wie erwartet wieder angeschaltet werden.
+
+Der Bildschirm wird anscheinend vom Xserver, welcher Teil des X Window Systems ist, verwaltet.
+=> https://www.linux-community.de/ausgaben/linuxuser/2001/12/das-x-window-system/
+
+Mit "xset" kann man über die command line auf die vom Xserver gesteuerte Hardware zugreifen,
+dazu zählt u.a. das Display.
+Mit "dpms" (Display Power Management Signaling) als Zusatz kann der Bildschirm wie gefordert
+an und aus geschaltet werden.
+Zusätzlich dazu kommt "force", um den Befehl ohne Zeitverzögerung auszuführen, und "on" bzw "off",
+was in diesem Kontext selbsterklärend ist.
+
+___________________________________________________________________
+
+Entwicklung in Netbeans per remote PC
+
+Um die Entwicklung einer Java Anwendung für das Raspberry Pi zu vereinfachen,
+soll Netbeans verwendet werden.
+Netbeans läuft jedoch auf dem Raspberry nur schlecht, deshalb wird dafür ein kräftiger
+Desktop Computer verwendet.
+Dieser wird per ssh remote Verbindung auf das Raspberry zugreifen.
+Java Projekte werden auf dem PC geschrieben, kompiliert, dann auf das Raspberry geladen und 
+dort ausgeführt.
+
+Dazu wird zunächst in den Raspberry Systemeinstellungen SSH aktiviert.
+Dann wird in Netbeans auf dem PC eine Remote Java Platform eingerichtet.
+Dafür benötigt man:
+
+1. Die IP Adresse des Raspberrys, welche per command line Befehl "ifconfig" abgerufen werden kann.
+2. Einen Username mit zugehörigem Passwort des Raspberrys.
+3. Den JRE Path des Raspberrys um JARs ausführen zu können.
+
+Um ein Projekt dann von Netbeans aus remote auszuführen, muss man in den Projekt Eigenschaften
+nur noch in den Run Optionen das Raspberry als Runtime Platform angeben.
+
+Eine Schwierigkeit tut sich bei der remote Entwicklung auf:
+Beim remote Ausführen eines builds von Netbeans aus auf dem Raspberry kann nicht auf X11
+zugegriffen werden, sodass Anwendungen mit grafischer Oberfläche nicht gestartet werden können.
+Von nun an verwendeter workaround ist das übertragen der jeweiligen JAR der Anwendung und direktes
+starten über die command line des Raspberrys.
+
+Für die grafische Oberfläche wird zunächst Java Swing verwendet, weil dies ohne weiteres auf dem 
+Raspberry funktioniert.
+
+__________________________________________________________________
+
+PostgreSQL
+
+Um später Nutzerdaten speichern und abrufen zu können, wird PostgreSQL als Datenbank verwendet.
+Diese soll durch JPA und Hibernate mit dem Java Projekt verbunden werden.
+
+Zunächst wird postgreSQL auf dem Raspberry Linux system per Konsolenbefehl apt zusammen mit
+dem pgadmin3 installiert.
+
+Dann wird eine Datenbank erstellt, bei der die Namen von Datenbank, Schema, Sequenz, Tabellen
+und Spalten (sowie der Spalten Wertetypen) von vornherein festgelegt sind.
+
+In diesem Fall gibt es einen Benutzer mit Namen "postgres", Passwort "kuchen123", Datenbankname
+"postgres", Schema "public", Tabelle "test", Spalten "id" (integer) und "name" (text).
+
+___________________________________________________________________
+
+Projektstruktur
+
+Es wird ein master- oder root Projekt in Netbeans geben, das von einem Arbeits-PC auf das 
+RaspberryPI als JAR deployed und dort per Konsole ausgeführt wird.
+
+Unterprojekte werden dem Projekt als libraries hinzugefügt, z.B. als bereits kompilierte JARs.
+
+Geplant sind:
+1. Ein Hibernate Projekt, das Datenbankzugriff ermöglicht.
+2. Eine grafische Oberfläche, die Informationen aus der Datenbank auf dem Bildschirm präsentiert.
+3. Irgendwas, das eine Verbindung zwischen Raspberry und Smartphone erstellen kann.
+4. Ein Display Controller, der Signale vom Bewegungsmelder verarbeitet.
+
+Das Hibernate Projekt kann bereits Werte in Postgres Tabellen eintragen.
+Dieses Projekt wird als JAR kompiliert dem master projekt zugeordnet.
+Beim bauen der JAR ist es ABSOLUT WICHTIG in Netbeans "build with dependencies" auszuwählen,
+und zur Assoziation die JAR mit den jeweiligen Dependencies zu verwenden. 
+(es wird trotzdem eine zweite ohne dependencies gebaut)
+Die maven dependencies innerhalb der JAR sind zum Ausführen der JAR an sich notwendig,
+ohne die funktioniert nichts.
