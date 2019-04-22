@@ -103,3 +103,12 @@ und zur Assoziation die JAR mit den jeweiligen Dependencies zu verwenden.
 (es wird trotzdem eine zweite ohne dependencies gebaut)
 Die maven dependencies innerhalb der JAR sind zum Ausführen der JAR an sich notwendig,
 ohne die funktioniert nichts.
+
+____________________________________________________________________
+
+Tabellen in PostgreSQL
+
+Wie bereits erwähnt müssen die Tabellen in postgres vordefiniert sein.
+Dafür wird dem Projekt eine .sql Datei hinzugefügt, mit der schnell und zuverlässig die notwendigen Tabellen
+erstellt werden können.
+Die Entity Klassen des Projekts werden sich während der Entwicklung an dieser .sql Datei orientieren.
