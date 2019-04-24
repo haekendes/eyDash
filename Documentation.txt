@@ -112,3 +112,26 @@ Wie bereits erwähnt müssen die Tabellen in postgres vordefiniert sein.
 Dafür wird dem Projekt eine .sql Datei hinzugefügt, mit der schnell und zuverlässig die notwendigen Tabellen
 erstellt werden können.
 Die Entity Klassen des Projekts werden sich während der Entwicklung an dieser .sql Datei orientieren.
+
+____________________________________________________________________
+
+24.04.2019
+
+Umstrukturierung des HibernateTest4 Projekts
+
+- Umbenannt in EyDashDatabaseManager.
+- Besitzt nun eine SQL Datei, mit der die Datenbank sofort auf das Projekt passend eingerichtet werden kann,
+ohne extra Arbeit.
+- Besitzt nun Entity Klassen für alle notwendigen Tabellen.
+- Die passenden Spalten und Datentypen müssen im Laufe des Projekts noch bestimmt werden.
+	-> SQL Datei und Entity Klassen müssen dann darauf angepasst werden.
+- Alle Klassen wurden in passend benannten packages im Projekt sortiert.
+	-> persistence.xml muss manuell auf Umbenennungen/Verschiebung angepasst werden.
+	-> Main class muss nach Umbenennung manuell neu in den Project Properties festgelegt werden.
+- Output jar Name wurde geändert
+	-> In den Project Properties unter General müssen Einträge für 
+		Group Id, Artifact Id und packaging manuell geändert werden.
+	-> Wert im <persistence-unit> tag der persistence.xml muss manuell geändert werden.
+	-> Argument für createEntityManagerFactory() muss manuell geändert werden.
+- Klasse DatabaseManager eingeführt, der statische Methoden bereitstellt, 
+	mit denen schnell SQL Einträge gemacht werden können.
