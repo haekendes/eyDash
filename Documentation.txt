@@ -121,7 +121,7 @@ Umstrukturierung des HibernateTest4 Projekts
 
 - Umbenannt in EyDashDatabaseManager.
 - Besitzt nun eine SQL Datei, mit der die Datenbank sofort auf das Projekt passend eingerichtet werden kann,
-ohne extra Arbeit.
+	ohne extra Arbeit.
 - Besitzt nun Entity Klassen für alle notwendigen Tabellen.
 - Die passenden Spalten und Datentypen müssen im Laufe des Projekts noch bestimmt werden.
 	-> SQL Datei und Entity Klassen müssen dann darauf angepasst werden.
