@@ -135,3 +135,15 @@ Umstrukturierung des HibernateTest4 Projekts
 	-> Argument für createEntityManagerFactory() muss manuell geändert werden.
 - Klasse DatabaseManager eingeführt, der statische Methoden bereitstellt, 
 	mit denen schnell SQL Einträge gemacht werden können.
+
+____________________________________________________________________
+
+26.04.2019
+
+PIR Bewegungssensor
+
+- Erster Test nach 2 Stunden erfolgreich.
+-> http://www.netzmafia.de/skripten/hardware/RasPi/Projekt-PIR/index.html
+	Führt zum ersten positiven Testergebnis; eine Handbewegung wird definitiv erkannt.
+- Python script wird zum Test verwendet
+- Nächster Schritt sind Tests in Java
