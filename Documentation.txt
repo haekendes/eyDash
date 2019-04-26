@@ -195,3 +195,4 @@ vorhandenen Github repo genommen, welches sich mit dem PIR Bewegungssensor besch
 Ergebnis: Es funzt!
 
 Um die Prozessorauslastung des Raspberrys zu reduzieren, wird noch das Thread.sleep(500) in der Schleife aktiviert.
+Durchscnittliche Auslastung von 25% -> 0%.
