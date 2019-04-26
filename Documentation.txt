@@ -190,4 +190,6 @@ Bisher fehlt jedoch auch noch wiringPi auf dem Raspberry, was eine low level Bib
 WiringPi wird schnell per apt-get installiert, und dann wird code zum erneuten Test des Sensors von einem
 vorhandenen Github repo genommen, welches sich mit dem PIR Bewegungssensor beschäftigt.
 
+(https://github.com/agilerules/IOT/tree/master/iot-pi4j-sensors)
+
 Ergebnis: Es funzt!
