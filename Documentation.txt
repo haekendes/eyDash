@@ -138,7 +138,7 @@ Umstrukturierung des HibernateTest4 Projekts
 
 ____________________________________________________________________
 
-26.04.2019
+25.04.2019
 
 PIR Bewegungssensor
 
@@ -146,4 +146,42 @@ PIR Bewegungssensor
 -> http://www.netzmafia.de/skripten/hardware/RasPi/Projekt-PIR/index.html
 	Führt zum ersten positiven Testergebnis; eine Handbewegung wird definitiv erkannt.
 - Python script wird zum Test verwendet
+- Einstellung der Empfindlichkeit und Zeitintervall durch drehen an den jeweiligen orangenen Drehmodulen, die am Chip des Sensors befestigt sind
+	=> Das Verhalten des Sensors wird währenddessen im Python script beobachtet, bis ein Intervall von ca. 1 Sekunde 			erreicht ist, wobei der Sensor von einer normalen Handbewegung ausgelöst wird.
+
 - Nächster Schritt sind Tests in Java
+
+____________________________________________________________________
+
+26.04.2019
+
+PIR Bewegungssensor und Java
+
+Um die Pins ansteuern zu können, mit denen der Bewegungssensor mit dem Raspberry verbunden ist,
+wird die Java Bibliothek Pi4j auf dem Entwicklungs-PC verwendet.
+Hierfür wird ein neues Maven Projekt erstellt, worin Pi4j einfach als dependency importiert werden kann.
+Dieses Projekt, genannt EyDashDisplayController, wird wie der DatabaseManager als kompilierte JAR dem Hauptprojekt hinzugefügt,
+und zum Testen remote auf dem Raspberry ausgeführt.
+Um den DisplayController separat von anderem Code ausführen zu können, wird im Hauptprojekt eine eigene TestMain Klasse erstellt, welche z.B. unter den Run-Optionen des Hauptprojekts vor dem Ausführen ausgewählt werden kann.
+Dadurch wird dann nur der Code in der TestMain ausgeführt, sodass z.B. keine Probleme mit dem X11 Display auftreten, wie es bei der Verwendung von Swing der Fall ist.
+=> Entwicklung wird angenehmer
+
+Der Bewegungssensor ist wie folgt mit dem Raspberry verbunden:
+- Vcc (5V) Pin zur Stromversorgung mit dem Raspberry Pin 2
+- GND (Masse) mit Pin 6
+- Dout (Digital out) zur Datenübertragung mit Pin 7, auch GPIO 4
+
+Bei erkannter Bewegung steht Dout für das gestern eingestellte Zeitintervall auf 3.3V, 
+wenn danach keine Bewegung erkannt wird, fließt durch Dout kein Strom mehr.
+Digital können diese Zustände als 1 und 0 ausgedrückt werden.
+
+Folgend soll also GPIO 4 mit Java ausgelesen werden.
+Pi4j verwendet ein bestimmtes Pin mapping:
+https://pi4j.com/1.2/images/j8header-b-plus.png
+
+Also wird nun im DisplayController Projekt eine Klasse angelegt, die vom Pin 7 Daten erhalten soll.
+
+Die Ausführung dieser Klasse scheitert jedoch bereits daran, dass die Pi4j dependencies nicht mit der JAR exportiert werden können, auch nicht nach vielfachen Versuchen das Problem zu lösen.
+Stattdessen wird die durch Maven bereits heruntergeladene Pi4j JAR dem Hauptprojekt direkt hinzugefügt und die DisplayController Klasse wird hier ausgeführt, was auch funktioniert.
+Das Maven Projekt des DisplayControllers an sich wird hiermit geschlossen.
+
