@@ -185,3 +185,9 @@ Die Ausführung dieser Klasse scheitert jedoch bereits daran, dass die Pi4j depe
 Stattdessen wird die durch Maven bereits heruntergeladene Pi4j JAR dem Hauptprojekt direkt hinzugefügt und die DisplayController Klasse wird hier ausgeführt, was auch funktioniert.
 Das Maven Projekt des DisplayControllers an sich wird hiermit geschlossen.
 
+Das Programm ist zwar jetzt ausführbar, die Pins liefern bisher jedoch nur 1 als input.
+Bisher fehlt jedoch auch noch wiringPi auf dem Raspberry, was eine low level Bibliothek für das Manipulieren von Pins ist.
+WiringPi wird schnell per apt-get installiert, und dann wird code zum erneuten Test des Sensors von einem
+vorhandenen Github repo genommen, welches sich mit dem PIR Bewegungssensor beschäftigt.
+
+Ergebnis: Es funzt!
