@@ -194,11 +194,4 @@ vorhandenen Github repo genommen, welches sich mit dem PIR Bewegungssensor besch
 
 Ergebnis: Es funzt!
 
-____________________________________________________________________
-
-Listen vs Poll
-
-Der Code des Github Projekts verwendet einen Listener, um Daten des Bewegungssensors zu empfangen.
-Das Programm auszuführen braucht konstant 25% der Prozessorleistung des Raspberrys.
-
-Versucht wird, die Beanspruchung des Prozessors durch eine Poll-Herangehensweise zu verringern.
+Um die Prozessorauslastung des Raspberrys zu reduzieren, wird noch das Thread.sleep(500) in der Schleife aktiviert.
