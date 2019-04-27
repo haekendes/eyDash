@@ -11,7 +11,7 @@ Konsole ein.
 
 ____________________________________________________________________
 
-Test: An- und Abschalten des Bildschirms vom Raspberry Pi aus
+Test: An- und Abschalten des Bildschirms mit der command line
 
 	1. Über die Linux Konsole - Hdmi Power Cut
 Mit dem Befehl "vcgencmd display_power 0" wird die Stromversorgung des Hdmi Anschlusses
