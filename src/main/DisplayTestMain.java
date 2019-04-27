@@ -20,8 +20,7 @@ public class DisplayTestMain {
      */
     public static void main(String[] args) {
         DisplayController dc = new DisplayController();
-        
-        dc.test();
+        dc.start();
     }
     
 }
