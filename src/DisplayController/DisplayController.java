@@ -29,7 +29,7 @@ public class DisplayController extends Thread {
     /**
      * Time until display is set to standby, in milliseconds.
      */
-    private long STANDBY_TIME = 5000000;
+    private long STANDBY_TIME = 120000; //2 minutes
     
     /**
      * Whether exceedance of standby time should be checked.
@@ -40,7 +40,7 @@ public class DisplayController extends Thread {
         bool = true;
         highTime = System.currentTimeMillis();
         
-        System.out.println("DisplayController initialized2");
+        System.out.println("DisplayController initialized, Version 1.0");
     }
 
     @Override
