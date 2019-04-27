@@ -196,3 +196,22 @@ Ergebnis: Es funzt!
 
 Um die Prozessorauslastung des Raspberrys zu reduzieren, wird noch das Thread.sleep(500) in der Schleife aktiviert.
 Durchscnittliche Auslastung von 25% -> 0%.
+
+____________________________________________________________________
+
+27.04.2019
+
+Test Displaysteuerung mit Bewegungssensor
+
+Ablauf:
+Das Projekt wird am Entwicklungs-PC kompiliert, an das Raspberry als jar gesendet, dort ausgeführt und die Konsolenausgaben werden an den Entwicklungs-PC zurückgegeben.
+Der gesendete Code sieht vor, beim Auslösen des Bewegungsmelders den Bildschirm abzuschalten.
+
+Der erste Test zeigt, dass der oben beschriebene Ablauf nicht funktioniert.
+Grund dafür ist wahrscheinlich, dass der Befehl zum Abschalten des Displays im Programm auf den Xserver zugreifen will, was remote bisher nicht funktioniert. (Runtime.getRuntime().exec("xset dpms force standby");)
+
+Beim nächsten Versuch wird die exportierte JAR beim Raspberry direkt über die command line gestartet.
+Dieser Versuch scheitert wieder, weil der Zugriff auf wiringPi versagt wird (was jedoch darauf hindeutet, dass wiringPi zum Ausführen des Projekts notwendig ist).
+
+Nun wird die JAR noch mal per command line ausgeführt, diesmal jedoch mit root Rechten.
+Das Ausführen funktioniert, und der Display schaltet sich beim Auslösen des Bewegungsmelders aus.
