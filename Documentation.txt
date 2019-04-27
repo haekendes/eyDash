@@ -219,3 +219,9 @@ Das Ausführen funktioniert, und der Display schaltet sich beim Auslösen des Be
 Nächster Test ist das Anschalten.
 Dafür wird der Display durch das Programm bei Programmstart auf standby gesetzt, dann soll er durch den Bewegungssensor angeschaltet werden.
 Dies funktioniert nach einigem Schrauben an der Sensitivität des Sensors.
+
+____________________________________________________________________
+
+Bug: Sensor erkennt eine Bewegung genau alle 60 Sekunden
+
+Lösungsansatz: von Listen auf Poll wechseln.
