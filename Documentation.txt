@@ -224,4 +224,18 @@ ____________________________________________________________________
 
 Bug: Sensor erkennt eine Bewegung genau alle 60 Sekunden
 
-Lösungsansatz: von Listen auf Poll wechseln.
+Versucht wird von Listener auf Poll zu wechseln, Poll funktioniert jedoch gar nicht.
+Änderung Dout von pin 4 auf pin 16, dann jedoch funktioniert gar nichts mehr.
+
+Nachforschung und Test ergibt, dass das Wlan des Raspberrys an dem Fehlverhalten Schuld trägt.
+Bug verschwindet, sobald das Wlan ausgeschaltet wird.
+Der Abstand des PIR Sensors zum Raspberry wird mit zusätzlichen Kabeln auf einen halben Meter erweitert.
+Test ergibt dass das die Lösung des Problems ist.
+
+____________________________________________________________________
+
+Raspberry schaltet Display nach idle time selbstständig aus
+
+Das möchten wir natürlich nicht.
+Zuerst wird per apt-get der xscreensaver installiert. Dieser wird dann deaktiviert, sodass der Display sich nicht mehr selbst abschaltet.
+Dann wird eine Abschaltfunktion in das eigene Programm eingebaut, um die Zeit bis zum Abschalten genau steuern zu können.
