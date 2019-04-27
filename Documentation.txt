@@ -239,3 +239,12 @@ Raspberry schaltet Display nach idle time selbstständig aus
 Das möchten wir natürlich nicht.
 Zuerst wird per apt-get der xscreensaver installiert. Dieser wird dann deaktiviert, sodass der Display sich nicht mehr selbst abschaltet.
 Dann wird eine Abschaltfunktion in das eigene Programm eingebaut, um die Zeit bis zum Abschalten genau steuern zu können.
+
+____________________________________________________________________
+
+Offene while Schleife und Performance
+
+Da die Klasse DisplayController eine offene while Schleife verwendet, die ständig ressourcen beanspruchen kann, erweitert die Klasse jetzt Thread.
+Somit wird bei Initialisierung des DisplayControllers ein neuer Thread erstellt, der dann direkt gestartet wird.
+Dieser eigenständig laufende Thread beeinflusst dann nicht mehr andere Threads wie z.B. den für die grafische Oberfläche.
+(Ist für diese Raspberry Anwendung vielleicht overkill, aber ich will das Programm anständig und nach Gewohnheit programmieren)
