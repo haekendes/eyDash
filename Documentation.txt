@@ -215,3 +215,7 @@ Dieser Versuch scheitert wieder, weil der Zugriff auf wiringPi versagt wird (was
 
 Nun wird die JAR noch mal per command line ausgeführt, diesmal jedoch mit root Rechten.
 Das Ausführen funktioniert, und der Display schaltet sich beim Auslösen des Bewegungsmelders aus.
+
+Nächster Test ist das Anschalten.
+Dafür wird der Display durch das Programm bei Programmstart auf standby gesetzt, dann soll er durch den Bewegungssensor angeschaltet werden.
+Dies funktioniert nach einigem Schrauben an der Sensitivität des Sensors.
