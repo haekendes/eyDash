@@ -248,3 +248,15 @@ Da die Klasse DisplayController eine offene while Schleife verwendet, die ständ
 Somit wird bei Initialisierung des DisplayControllers ein neuer Thread erstellt, der dann direkt gestartet wird.
 Dieser eigenständig laufende Thread beeinflusst dann nicht mehr andere Threads wie z.B. den für die grafische Oberfläche.
 (Ist für diese Raspberry Anwendung vielleicht overkill, aber ich will das Programm anständig und nach Gewohnheit programmieren)
+
+____________________________________________________________________
+
+02.05.2019
+
+Verbindungsaufbau zwischen Raspberry und Smartphone mittels Java
+
+Zuerst wird nach einer vorhandenen Java Bibliothek gesucht, mit der auf Linux Bluetooth zugegriffen werden kann.
+-> lbt4j, last commit 2017, sollte also aktuell genug sein.
+
+Für diese Bibliothek muss außerdem BlueZ auf dem neusten Stand sein.
+(Verwendetes Tutorial: https://scribles.net/updating-bluez-on-raspberry-pi-5-43-to-5-48/)
