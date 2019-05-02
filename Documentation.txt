@@ -260,3 +260,10 @@ Zuerst wird nach einer vorhandenen Java Bibliothek gesucht, mit der auf Linux Bl
 
 Für diese Bibliothek muss außerdem BlueZ auf dem neusten Stand sein.
 (Verwendetes Tutorial: https://scribles.net/updating-bluez-on-raspberry-pi-5-43-to-5-48/)
+
+lbt4j stellt sich als schwer zu importieren heraus, deswegen wird nach einigen Versuchen versucht, mit einer anderen Bibliothek fortzufahren.
+Neue Bibliothek: tinyb
+
+Zuerst wird jedoch nun die Verwendung von BlueZ auf dem Raspberry getestet, was die Grundlage jeder Java Bibliothek ist und deshalb funktionieren muss.
+Testweise wird versucht, eine Verbindung mit dem eigenen Smartphone aufzustellen.
+Dies wird erfolgreich erreicht, allein über command line Eingaben für BlueZ.
