@@ -5,7 +5,7 @@
  */
 package main;
 
-import DisplayController.DisplayController;
+import controls.DisplayController;
 
 
 
