@@ -267,3 +267,10 @@ Neue Bibliothek: tinyb
 Zuerst wird jedoch nun die Verwendung von BlueZ auf dem Raspberry getestet, was die Grundlage jeder Java Bibliothek ist und deshalb funktionieren muss.
 Testweise wird versucht, eine Verbindung mit dem eigenen Smartphone aufzustellen.
 Dies wird erfolgreich erreicht, allein über command line Eingaben für BlueZ.
+
+04.05.2019
+
+tinyb stellt sich auch als schwer zu verwenden heraus, denn anscheinend wird zum Kompilieren der java projekte ein externes Programm benötigt, jedoch soll das Kompilieren in NetBeans stattfinden.
+
+Stattdessen wird die Bibliothek BlueCove getestet.
+Diese kann im Gegensatz zu den vorigen Versuchen recht leicht in NetBeans eingebunden werden, das Kompilieren funktioniert sofort fehlerfrei, die JAR kann remote ohne exception auf dem Raspberry ausgeführt werden und es wird dabei sogar ein Bluetooth-Gerät (eigenes Smartphone) gefunden.
