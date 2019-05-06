@@ -279,3 +279,7 @@ Diese kann im Gegensatz zu den vorigen Versuchen recht leicht in NetBeans eingeb
 
 http://www.aviyehuda.com/blog/2010/01/08/connecting-to-bluetooth-devices-with-java/
 -> Verbindung über Java aufbauen
+
+Raspberry verfügt über keine Bluetooth services und kann daher nicht mit dem smartphone verbunden werden.
+Installiere obex push service zum Testen.
+(https://www.raspberrypi.org/forums/viewtopic.php?t=146328)
