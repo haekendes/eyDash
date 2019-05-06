@@ -274,3 +274,8 @@ tinyb stellt sich auch als schwer zu verwenden heraus, denn anscheinend wird zum
 
 Stattdessen wird die Bibliothek BlueCove getestet.
 Diese kann im Gegensatz zu den vorigen Versuchen recht leicht in NetBeans eingebunden werden, das Kompilieren funktioniert sofort fehlerfrei, die JAR kann remote ohne exception auf dem Raspberry ausgeführt werden und es wird dabei sogar ein Bluetooth-Gerät (eigenes Smartphone) gefunden.
+
+06.05.2019
+
+http://www.aviyehuda.com/blog/2010/01/08/connecting-to-bluetooth-devices-with-java/
+-> Verbindung über Java aufbauen
