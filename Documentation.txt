@@ -286,3 +286,45 @@ Installiere obex push service zum Testen.
 
 Außerdem wird ein Verbindungsprofil auf dem Raspberry angelegt, damit es mit dem Smartphone gepaired werden kann.
 (https://www.raspberrypi.org/forums/viewtopic.php?p=947185#p947185)
+
+
+____________________________________________________________________
+
+07.05.2019
+
+Umplanung
+
+Die bisher erfolgreich implementierte Erkennung nahegelegener Bluetooth Geräte wird für das Projekt ausreichen.
+Das Aufbauen einer direkten Verbindung wird nicht notwendig sein.
+Neue Benutzer des eyDash werden am Raspberry über eine grafische Benutzeroberfläche hinzugefügt werden.
+Diese fordert die Eingabe des Bluetooth Namens oder der Bluetooth Adresse eines Smartphones.
+Ist mindestens eine der beiden Angaben gemacht, wird daraufhin im Umfeld nach einem Bluetooth Gerät gesucht, das der/den Angabe(n) entspricht.
+Ist die Suche erfolgreich, wird die jeweils evtl. fehlende Angabe vom gefundenen Gerät abgerufen (z.B. wenn nur der Name angegeben wurde, so wird die Adresse abgerufen).
+Somit ist das gefundene Bluetooth Gerät später eindeutig wiedererkennbar.
+Dann werden Bluetooth Name & Adresse, sowie alle anderen am Raspberry eingegebenen Angaben zum Benutzer in der Datenbank gespeichert.
+=> Ein neuer Benutzer ist angelegt.
+
+Zu den Angaben sollen auch die nötigen Daten zum Zugriff auf z.B. MS Outlook gehören.
+Darauf greift das Raspberry dann über die eigene Internetverbindung zu, sobald das passende Bluetooth Gerät im Umfeld erkannt 
+worden ist.
+Die Termine sollen im Hintergrund geladen werden, sofort nach der Bluetooth Erkennung, unabhängig davon ob der Display bereits
+angeschaltet wurde durch Bewegungserkennung.
+
+____________________________________________________________________
+
+Test Bluetooth
+
+Die Klasse ConnectionManager wird zu BluetoothDeviceFinder umbenannt, um ihre Rolle klar zu machen.
+Diese Klasse implementiert jetzt Runnable, damit sie einfach einem in einer anderen Klasse erstellten Thread übergeben werden kann.
+Die Klasse run enthält eine while-Schleife, die per boolean an- und abgeschaltet werden kann.
+Den boolean kann man mit setter und getter manipulieren.
+Die while-Schleife ruft immer wieder die bluetooth deviceDiscovery auf und gibt jedes Mal Datum und Zeit des Versuchs aus.
+
+Getestet wird, wie häufig die Bluetooth Device Discovery durchgeführt wird und auf welche Reichweite Geräte erkannt werden.
+
+Ergebnis zum Testintervall:
+DeviceDiscovery wird alle 10.5 Sekunden ein Mal vollständig ausgeführt.
+
+Ergebnis zur Reichweite:
+Erkennung funktioniert über geschlossene Türen hinweg innerhalb der Wohnung.
+Funktioniert nicht mehr bei Verlassen der Wohnung.
