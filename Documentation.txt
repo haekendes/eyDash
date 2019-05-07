@@ -335,3 +335,16 @@ Eine Liste wird verwendet, um stets neu beschrieben zu werden, bei jedem Suchdur
 Die andere Liste kopiert die erste Liste immer direkt bevor der Inhalt der ersten wieder gelöscht wird.
 Dadurch kann jederzeit sicher auf die zweite Liste von außerhalb des Threads zugegriffen werden, da diese nie aktiv beschrieben wird, sondern bei jedem Durchlauf bloß eine neue Instanz von ArrayList mit der ersten Liste als Argument erzeugt.
 Diese Vorgehensweise verhindert ConcurrentModificationExceptions, wie sie bei vorigen Tests aufgetreten sind.
+
+____________________________________________________________________
+
+Outlook
+
+Die Termine sollen von MS Outlook abgerufen werden.
+Dazu wird ein Outlook Account für dieses Projekt erstellt.
+
+Adresse:
+eyDash@outlook.de
+
+Passwort:
+kuchen123
