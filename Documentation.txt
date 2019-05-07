@@ -328,3 +328,10 @@ DeviceDiscovery wird alle 10.5 Sekunden ein Mal vollständig ausgeführt.
 Ergebnis zur Reichweite:
 Erkennung funktioniert über geschlossene Türen hinweg innerhalb der Wohnung.
 Funktioniert nicht mehr bei Verlassen der Wohnung.
+
+ConcurrentModificationException
+Die Klasse BluetoothDeviceFinder besitzt jetzt zwei Listen für die Speicherung der gefundenen Geräte.
+Eine Liste wird verwendet, um stets neu beschrieben zu werden, bei jedem Suchdurchlauf.
+Die andere Liste kopiert die erste Liste immer direkt bevor der Inhalt der ersten wieder gelöscht wird.
+Dadurch kann jederzeit sicher auf die zweite Liste von außerhalb des Threads zugegriffen werden, da diese nie aktiv beschrieben wird, sondern bei jedem Durchlauf bloß eine neue Instanz von ArrayList mit der ersten Liste als Argument erzeugt.
+Diese Vorgehensweise verhindert ConcurrentModificationExceptions, wie sie bei vorigen Tests aufgetreten sind.
