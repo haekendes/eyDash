@@ -5,22 +5,14 @@
  */
 package main;
 
-import controls.DisplayController;
-
-
-
 /**
  *
  * @author Robin Christ
  */
-public class DisplayTestMain {
-
-    /**
-     * @param args the command line arguments
-     */
+public class DatabaseManagerTestMain {
+    
     public static void main(String[] args) {
         
-        new Thread(new DisplayController()).start();
     }
     
 }

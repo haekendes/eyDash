@@ -16,20 +16,13 @@ import javax.swing.JFrame;
  *
  * @author Robin Christ
  */
-public class Main {
+public class SwingTestMain {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
-//        try {
-//            Runtime.getRuntime().exec("sudo export DISPLAY=:0.0"); //funktioniert
-//        } catch (IOException ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
-
         JFrame frame = new JFrame();
-//        frame.setBounds(700, 400, 400, 400);
+
         frame.setVisible(true);
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -43,11 +36,7 @@ public class Main {
         
         frame.add(new Label("BLAAAAAAAAAAAAAAAAA"));
         
-        setFrameSize(frame, 0.75, 0.75);        
-
-//        DatabaseManager.monkeySeeMonkeyDo();
-        
-        System.out.println("Seikou shita! ...kana?");
+        setFrameSize(frame, 0.75, 0.75);
     }
     
     private static void setFrameSize(Frame frame, double width, double height) {

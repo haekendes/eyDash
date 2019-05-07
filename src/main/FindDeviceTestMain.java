@@ -5,13 +5,13 @@
  */
 package main;
 
-import controls.ConnectionManager;
+import controls.BluetoothDeviceFinder;
 
 /**
  *
  * @author Robin Christ
  */
-public class ConnectionTestMain {
+public class FindDeviceTestMain {
 
 //        public static final Vector/*<RemoteDevice>*/ devicesDiscovered = new Vector();
     /**
@@ -19,6 +19,6 @@ public class ConnectionTestMain {
      */
     public static void main(String[] args) {
 
-        new Thread(new ConnectionManager()).start();
+        new Thread(new BluetoothDeviceFinder()).start();
     }
 }

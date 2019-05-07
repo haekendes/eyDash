@@ -19,7 +19,7 @@ import java.util.Date;
  *
  * @author Robin Christ
  */
-public class DisplayController extends Thread {
+public class DisplayController implements Runnable {
     
     /**
      * Last recorded System time the sensor state was high, in milliseconds.

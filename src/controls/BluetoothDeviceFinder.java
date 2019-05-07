@@ -28,21 +28,23 @@ import javax.obex.ClientSession;
 import javax.obex.HeaderSet;
 import javax.obex.Operation;
 import javax.obex.ResponseCodes;
-import main.ConnectionTestMain;
+import main.FindDeviceTestMain;
 
 /**
  *
  * @author Robin Christ
  */
-public class ConnectionManager implements Runnable {
+public class BluetoothDeviceFinder implements Runnable {
 
+    private List<RemoteDevice> newDevices;
     private List<RemoteDevice> discoveredDevices;
 
     private boolean isRunning;
     
     private SimpleDateFormat formatter;
 
-    public ConnectionManager() {
+    public BluetoothDeviceFinder() {
+        this.newDevices = new ArrayList();
         this.discoveredDevices = new ArrayList();
         this.isRunning = true;
         this.formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
@@ -52,6 +54,7 @@ public class ConnectionManager implements Runnable {
     public void run() {
         while (isRunning) {
             System.out.println("------------------------");
+            
             Date date = new Date(System.currentTimeMillis());
             System.out.println(formatter.format(date));
             
@@ -62,6 +65,9 @@ public class ConnectionManager implements Runnable {
     public void discoverDevices() {
         final Object inquiryCompletedEvent = new Object();
         DiscoveryListener discoveryListener = initDiscoveryListener(inquiryCompletedEvent);
+        
+        discoveredDevices = newDevices;
+        newDevices.clear();
 
         synchronized (inquiryCompletedEvent) {
             boolean started = false;
@@ -70,7 +76,7 @@ public class ConnectionManager implements Runnable {
                 started = LocalDevice.getLocalDevice().getDiscoveryAgent().startInquiry(DiscoveryAgent.GIAC, discoveryListener);
 
             } catch (BluetoothStateException ex) {
-                Logger.getLogger(ConnectionTestMain.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FindDeviceTestMain.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             if (started) {
@@ -80,9 +86,9 @@ public class ConnectionManager implements Runnable {
                     inquiryCompletedEvent.wait();
                     
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(ConnectionTestMain.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FindDeviceTestMain.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                System.out.println(discoveredDevices.size() + " device(s) found");
+                System.out.println(newDevices.size() + " device(s) found");
             }
         }
     }
@@ -93,9 +99,8 @@ public class ConnectionManager implements Runnable {
             @Override
             public void deviceDiscovered(RemoteDevice btDevice, DeviceClass cod) {
                 System.out.println("Device " + btDevice.getBluetoothAddress() + " found");
-
-                getDiscoveredDevices().clear();
-                getDiscoveredDevices().add(btDevice);
+                
+                getNewDevices().add(btDevice);
 
                 try {
                     System.out.println("    name " + btDevice.getFriendlyName(false));
@@ -133,15 +138,8 @@ public class ConnectionManager implements Runnable {
 
             LocalDevice.getLocalDevice().setDiscoverable(code);
         } catch (BluetoothStateException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BluetoothDeviceFinder.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    /**
-     * @return the discoveredDevices
-     */
-    public List<RemoteDevice> getDiscoveredDevices() {
-        return discoveredDevices;
     }
 
     private void discoverServices(DiscoveryListener discoveryListener, RemoteDevice device, Object inquiryCompletedEvent) {
@@ -156,13 +154,13 @@ public class ConnectionManager implements Runnable {
         try {
             localDevice = LocalDevice.getLocalDevice();
         } catch (BluetoothStateException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BluetoothDeviceFinder.class.getName()).log(Level.SEVERE, null, ex);
         }
         DiscoveryAgent agent = localDevice.getDiscoveryAgent();
         try {
             agent.searchServices(null, uuidSet, device, discoveryListener);
         } catch (BluetoothStateException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BluetoothDeviceFinder.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         try {
@@ -249,5 +247,12 @@ public class ConnectionManager implements Runnable {
      */
     public void setRunning(boolean isRunning) {
         this.isRunning = isRunning;
+    }
+
+    /**
+     * @return the newDevices
+     */
+    public List<RemoteDevice> getNewDevices() {
+        return newDevices;
     }
 }
