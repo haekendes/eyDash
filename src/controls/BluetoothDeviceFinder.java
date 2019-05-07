@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.bluetooth.BluetoothStateException;
-import javax.bluetooth.DataElement;
 import javax.bluetooth.DeviceClass;
 import javax.bluetooth.DiscoveryAgent;
 import javax.bluetooth.DiscoveryListener;
@@ -66,7 +65,7 @@ public class BluetoothDeviceFinder implements Runnable {
         final Object inquiryCompletedEvent = new Object();
         DiscoveryListener discoveryListener = initDiscoveryListener(inquiryCompletedEvent);
         
-        discoveredDevices = newDevices;
+        discoveredDevices = new ArrayList(newDevices);
         newDevices.clear();
 
         synchronized (inquiryCompletedEvent) {
@@ -252,7 +251,14 @@ public class BluetoothDeviceFinder implements Runnable {
     /**
      * @return the newDevices
      */
-    public List<RemoteDevice> getNewDevices() {
+    private List<RemoteDevice> getNewDevices() {
         return newDevices;
+    }
+
+    /**
+     * @return the discoveredDevices
+     */
+    public List<RemoteDevice> getDiscoveredDevices() {
+        return discoveredDevices;
     }
 }

@@ -6,6 +6,10 @@
 package main;
 
 import controls.BluetoothDeviceFinder;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.bluetooth.RemoteDevice;
 
 /**
  *
@@ -19,6 +23,27 @@ public class FindDeviceTestMain {
      */
     public static void main(String[] args) {
 
-        new Thread(new BluetoothDeviceFinder()).start();
+        BluetoothDeviceFinder bdf = new BluetoothDeviceFinder();
+        new Thread(bdf).start();
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    for (RemoteDevice rd : bdf.getDiscoveredDevices()) {
+                        try {
+                            System.out.println("Print: " + rd.getFriendlyName(false) + " " + rd.getBluetoothAddress());
+                        } catch (IOException ex) {
+                        }
+                    }
+                    
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+                    }
+                }
+            }
+        });
+        t.start();
     }
 }
