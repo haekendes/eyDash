@@ -348,3 +348,24 @@ eyDash@outlook.de
 
 Passwort:
 kuchen123
+
+____________________________________________________________________
+
+13.05.2019
+
+https://github.com/cbales/onenote-content-push-java-graph-sample
+Versuche Verbindung zu Outlook aufzubauen.
+
+MS graph sdk für java als JAR gedownloaded.
+
+MS Azure Account ist notwendig, jedoch nicht ohne weiteres kostenfrei.
+Outlook wird eingestampft.
+
+____________________________________________________________________
+
+Verwendung von Google statt Microsaft Diensten
+
+Neues Google Konto:
+
+eydashprojekt@gmail.com
+kuchen123
