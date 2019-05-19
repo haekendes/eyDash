@@ -2,8 +2,11 @@ CREATE TABLE users(
 userid INTEGER,
 firstname TEXT,
 lastname TEXT,
-phonenumber INTEGER,
-PRIMARY KEY(userid, phonenumber)
+mailadress TEXT,
+password TEXT,
+bluetoothname TEXT,
+bluetoothadress TEXT,
+PRIMARY KEY(userid)
 );
 
 CREATE TABLE appointments(

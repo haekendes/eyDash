@@ -33,8 +33,17 @@ public class EyDashUser implements Serializable {
     @Column(name = "lastname")
     private String lastName;
     
-    @Column(name = "phonenumber")
-    private int phoneNumber;
+    @Column(name = "mailadress")
+    private String mailAdress;
+    
+    @Column(name = "password")
+    private String password;
+    
+    @Column(name = "bluetoothname")
+    private String bluetoothName;
+    
+    @Column(name = "bluetoothadress")
+    private String bluetoothAdress;
 
     public Integer getId() {
         return id;
@@ -98,17 +107,58 @@ public class EyDashUser implements Serializable {
     }
 
     /**
-     * @return the phoneNumber
+     * @return the bluetoothName
      */
-    public int getPhoneNumber() {
-        return phoneNumber;
+    public String getBluetoothName() {
+        return bluetoothName;
     }
 
     /**
-     * @param phoneNumber the phoneNumber to set
+     * @param bluetoothName the bluetoothName to set
      */
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setBluetoothName(String bluetoothName) {
+        this.bluetoothName = bluetoothName;
     }
-    
+
+    /**
+     * @return the bluetoothAdress
+     */
+    public String getBluetoothAdress() {
+        return bluetoothAdress;
+    }
+
+    /**
+     * @param bluetoothAdress the bluetoothAdress to set
+     */
+    public void setBluetoothAdress(String bluetoothAdress) {
+        this.bluetoothAdress = bluetoothAdress;
+    }
+
+    /**
+     * @return the mailAdress
+     */
+    public String getMailAdress() {
+        return mailAdress;
+    }
+
+    /**
+     * @param mailAdress the mailAdress to set
+     */
+    public void setMailAdress(String mailAdress) {
+        this.mailAdress = mailAdress;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
