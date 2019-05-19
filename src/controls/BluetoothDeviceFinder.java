@@ -141,6 +141,12 @@ public class BluetoothDeviceFinder implements Runnable {
         }
     }
 
+    /**
+     * Not yet intended for use.
+     * @param discoveryListener
+     * @param device
+     * @param inquiryCompletedEvent 
+     */
     private void discoverServices(DiscoveryListener discoveryListener, RemoteDevice device, Object inquiryCompletedEvent) {
         UUID[] uuidSet = new UUID[1];
         uuidSet[0] = new UUID(0x1105); //OBEX Object Push service
@@ -171,6 +177,11 @@ public class BluetoothDeviceFinder implements Runnable {
         }
     }
 
+    /**
+     * Not yet intended for use.
+     * @param remoteDevice
+     * @return 
+     */
     private Boolean pairDevices(RemoteDevice remoteDevice) {
         //check if authenticated already
         if (remoteDevice.isAuthenticated()) {
@@ -202,6 +213,10 @@ public class BluetoothDeviceFinder implements Runnable {
         }
     }
 
+    /**
+     * Not yet intended for use.
+     * @param serverURL 
+     */
     private void sendMessageToDevice(String serverURL) {
         try {
             System.out.println("Connecting to " + serverURL);
