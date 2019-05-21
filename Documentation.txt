@@ -369,3 +369,18 @@ Neues Google Konto:
 
 eydashprojekt@gmail.com
 kuchen123
+
+
+____________________________________________________________________
+
+Verbindungsaufbau zu Google und Abrufen von Terminen
+
+Verwendetes Tutorial:
+https://developers.google.com/calendar/quickstart/java#troubleshooting
+
+Dies ist das erste Mal, dass wir Gradle verwenden.
+Trotzdem funktioniert der Test-build nach nur überschaubaren Schwierigkeiten.
+Mit dem vorher genannten Google Konto wird im Google Calendar ein Termin erstellt, und dieser wird auch erfolgreich abgerufen.
+Der Test-build wurde bis jetzt wie im Tutorial beschrieben unter Windows per command line kompiliert und ausgeführt.
+Jetzt soll das Projekt in Netbeans importiert werden.
+Dies funktioniert mit einem neu hinzugefügten Plugin für Gradle recht problemlos, und das Projekt kann per Netbeans kompiliert und ausgeführt werden.
