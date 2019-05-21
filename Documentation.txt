@@ -391,3 +391,22 @@ Diese enthält Informationen, die versichern, dass beide Verbindungspartner eina
 Desweiteren benötigt man pro user einen token, der zum Zugriff auf den Kalender berechtigt.
 Dieser token soll für den jeweiligen Benutzer zusammen mit den anderen Benutzerinformationen in der Datenbank gespeichert werden.
 Der token speziell soll als byte[] array gespeichert werden.
+Um den token in der datenbank speichern zu können, muss von ihm kurz eine temporäre Datei erstellt werden, die dann als byte[] in der Datenbank gespeichert wird.
+Die temporäre Datei wird danach gelöscht.
+
+
+____________________________________________________________________
+
+Nutzererstellung
+
+Diese soll nun wie folgt ablaufen:
+Der neue Nutzer gibt seinen Vor-, Nachnamen sowie Bluetoothnamen und/oder Bluetooth Adresse an.
+Dann bestätigt er die Eingabe.
+Daraufhin wird geprüft, ob sein Bluetooth Gerät (wahrscheinlich Smartphone) gefunden werden kann.
+Ist dem nicht so, hält die Nutzererstellung hier an und fordert den Nutzer auf, sein Bluetooth gerät anzuschalten oder die Eingaben zu korrigieren.
+Wird das Gerät gefunden, werden gegebenenfalls ausgelassene Eingaben selbstständig vom Programm ergänzt.
+(z.B. Wenn man nur den Bluetoothnamen angibt, wird die Adresse durch das erste gefunde Gerät mit passendem Namen ergänzt.)
+Danach öffnet sich der Browser, in dem ein Google Account ausgewählt/eingeloggt werden kann.
+Hier wird nach Zugriffsrechten gefragt.
+Bei Bestätigung wird der Zugriffstoken heruntergeladen und als byte[] mit allen anderen Informationen zusammen in der lokalen Datenbank gespeichert.
+Damit ist die Nutzererstellung abgeschlossen.
