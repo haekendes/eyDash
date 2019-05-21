@@ -384,3 +384,10 @@ Mit dem vorher genannten Google Konto wird im Google Calendar ein Termin erstell
 Der Test-build wurde bis jetzt wie im Tutorial beschrieben unter Windows per command line kompiliert und ausgeführt.
 Jetzt soll das Projekt in Netbeans importiert werden.
 Dies funktioniert mit einem neu hinzugefügten Plugin für Gradle recht problemlos, und das Projekt kann per Netbeans kompiliert und ausgeführt werden.
+
+Das Programm benötigt eine von der Google Api bereitgestellte credentials.json Datei zur Ausführung.
+Diese enthält Informationen, die versichern, dass beide Verbindungspartner einander bereits bekannt sind.
+
+Desweiteren benötigt man pro user einen token, der zum Zugriff auf den Kalender berechtigt.
+Dieser token soll für den jeweiligen Benutzer zusammen mit den anderen Benutzerinformationen in der Datenbank gespeichert werden.
+Der token speziell soll als byte[] array gespeichert werden.
