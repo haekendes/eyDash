@@ -43,11 +43,12 @@ public class DatabaseManager {
         return tq.getSingleResult();
     }
     
-    public void createUser(String firstName, String lastName, String mailAdress, String password, String bluetoothName, String bluetoothAdress) {
+    public void createUser(String firstName, String lastName, byte[] token, String bluetoothName, String bluetoothAdress) {
         EyDashUser u = new EyDashUser();
-//        u.setId(id);
+
         u.setFirstName(firstName);
         u.setLastName(lastName);
+        u.setToken(token);
         u.setBluetoothName(bluetoothName);
         u.setBluetoothAdress(bluetoothAdress);
         

@@ -33,11 +33,8 @@ public class EyDashUser implements Serializable {
     @Column(name = "lastname")
     private String lastName;
     
-    @Column(name = "mailadress")
-    private String mailAdress;
-    
-    @Column(name = "password")
-    private String password;
+    @Column(name = "token")
+    private byte[] token;
     
     @Column(name = "bluetoothname")
     private String bluetoothName;
@@ -135,30 +132,16 @@ public class EyDashUser implements Serializable {
     }
 
     /**
-     * @return the mailAdress
+     * @return the token
      */
-    public String getMailAdress() {
-        return mailAdress;
+    public byte[] getToken() {
+        return token;
     }
 
     /**
-     * @param mailAdress the mailAdress to set
+     * @param token the token to set
      */
-    public void setMailAdress(String mailAdress) {
-        this.mailAdress = mailAdress;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setToken(byte[] token) {
+        this.token = token;
     }
 }

@@ -28,7 +28,7 @@ public class TestMain {
         int phoneNumber = (int) (Math.random()*100);
         
         DatabaseManager dm = new DatabaseManager();
-        dm.createUser(firstName, lastName, mailAdress, password, bluetoothName, bluetoothAdress);
+//        dm.createUser(firstName, lastName, mailAdress, password, bluetoothName, bluetoothAdress);
         
         EyDashUser user = dm.getUserByPhoneNumber(25);
         System.out.println(user.getId() + " | " + user.getFirstName() + " | " + user.getLastName());

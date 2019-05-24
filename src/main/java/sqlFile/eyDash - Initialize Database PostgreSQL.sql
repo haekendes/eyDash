@@ -2,8 +2,7 @@ CREATE TABLE users(
 userid INTEGER,
 firstname TEXT,
 lastname TEXT,
-mailadress TEXT,
-password TEXT,
+token BYTEA,
 bluetoothname TEXT,
 bluetoothadress TEXT,
 PRIMARY KEY(userid)
