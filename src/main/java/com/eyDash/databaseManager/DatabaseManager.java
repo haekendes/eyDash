@@ -43,6 +43,16 @@ public class DatabaseManager {
         return tq.getSingleResult();
     }
     
+    public EyDashUser getUserByBluetoothAdress(String adress) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        String query = "FROM EyDashUser u WHERE u.bluetoothAdress = :BluetoothAdress";
+        
+        TypedQuery<EyDashUser> tq = em.createQuery(query, EyDashUser.class);
+        tq.setParameter("BluetoothAdress", adress);
+        
+        return tq.getSingleResult();
+    }
+    
     public void createUser(String firstName, String lastName, byte[] token, String bluetoothName, String bluetoothAdress) {
         EyDashUser u = new EyDashUser();
 
