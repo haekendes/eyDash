@@ -3,16 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package deprecated;
+
+import controls.DisplayController;
+
+
 
 /**
  *
  * @author Robin Christ
  */
-public class DatabaseManagerTestMain {
-    
+public class DisplayTestMain {
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         
+        new Thread(new DisplayController()).start();
     }
     
 }

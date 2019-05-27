@@ -5,6 +5,8 @@
  */
 package controls;
 
+import com.eyDash.databaseManager.DatabaseManager;
+import com.eyDash.entities.EyDashUser;
 import com.intel.bluetooth.RemoteDeviceHelper;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -27,7 +29,6 @@ import javax.obex.ClientSession;
 import javax.obex.HeaderSet;
 import javax.obex.Operation;
 import javax.obex.ResponseCodes;
-import main.FindDeviceTestMain;
 
 /**
  *
@@ -39,10 +40,14 @@ public class BluetoothDeviceFinder implements Runnable {
     private List<RemoteDevice> discoveredDevices;
 
     private boolean isRunning;
-    
+
     private SimpleDateFormat formatter;
 
-    public BluetoothDeviceFinder() {
+    private DatabaseManager dm;
+
+    public BluetoothDeviceFinder(DatabaseManager dm) {
+        this.dm = dm;
+
         this.newDevices = new ArrayList();
         this.discoveredDevices = new ArrayList();
         this.isRunning = true;
@@ -53,10 +58,10 @@ public class BluetoothDeviceFinder implements Runnable {
     public void run() {
         while (isRunning) {
             System.out.println("------------------------");
-            
+
             Date date = new Date(System.currentTimeMillis());
             System.out.println(formatter.format(date));
-            
+
             discoverDevices();
         }
     }
@@ -64,28 +69,26 @@ public class BluetoothDeviceFinder implements Runnable {
     public void discoverDevices() {
         final Object inquiryCompletedEvent = new Object();
         DiscoveryListener discoveryListener = initDiscoveryListener(inquiryCompletedEvent);
-        
+
         discoveredDevices = new ArrayList(newDevices);
         newDevices.clear();
 
         synchronized (inquiryCompletedEvent) {
             boolean started = false;
-            
+
             try {
                 started = LocalDevice.getLocalDevice().getDiscoveryAgent().startInquiry(DiscoveryAgent.GIAC, discoveryListener);
 
             } catch (BluetoothStateException ex) {
-                Logger.getLogger(FindDeviceTestMain.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             if (started) {
                 System.out.println("wait for device inquiry to complete...");
-                
+
                 try {
                     inquiryCompletedEvent.wait();
-                    
+
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(FindDeviceTestMain.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 System.out.println(newDevices.size() + " device(s) found");
             }
@@ -98,7 +101,10 @@ public class BluetoothDeviceFinder implements Runnable {
             @Override
             public void deviceDiscovered(RemoteDevice btDevice, DeviceClass cod) {
                 System.out.println("Device " + btDevice.getBluetoothAddress() + " found");
-                
+
+                EyDashUser user = dm.getUserByBluetoothAdress(btDevice.getBluetoothAddress());
+                System.out.println(user.getId() + " | " + user.getFirstName() + " | " + user.getLastName());
+
                 getNewDevices().add(btDevice);
 
                 try {
@@ -111,7 +117,7 @@ public class BluetoothDeviceFinder implements Runnable {
             @Override
             public void inquiryCompleted(int discType) {
                 System.out.println("Device Inquiry completed!");
-                
+
                 synchronized (inquiryCompletedEvent) {
                     inquiryCompletedEvent.notifyAll();
                 }
@@ -143,9 +149,10 @@ public class BluetoothDeviceFinder implements Runnable {
 
     /**
      * Not yet intended for use.
+     *
      * @param discoveryListener
      * @param device
-     * @param inquiryCompletedEvent 
+     * @param inquiryCompletedEvent
      */
     private void discoverServices(DiscoveryListener discoveryListener, RemoteDevice device, Object inquiryCompletedEvent) {
         UUID[] uuidSet = new UUID[1];
@@ -179,8 +186,9 @@ public class BluetoothDeviceFinder implements Runnable {
 
     /**
      * Not yet intended for use.
+     *
      * @param remoteDevice
-     * @return 
+     * @return
      */
     private Boolean pairDevices(RemoteDevice remoteDevice) {
         //check if authenticated already
@@ -215,7 +223,8 @@ public class BluetoothDeviceFinder implements Runnable {
 
     /**
      * Not yet intended for use.
-     * @param serverURL 
+     *
+     * @param serverURL
      */
     private void sendMessageToDevice(String serverURL) {
         try {

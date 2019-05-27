@@ -8,6 +8,8 @@ package main;
 import com.eyDash.databaseManager.DatabaseManager;
 import com.eyDash.entities.EyDashUser;
 import connector.EyDashGoogleConnector;
+import controls.BluetoothDeviceFinder;
+import controls.DisplayController;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,21 +22,23 @@ import java.util.logging.Logger;
  *
  * @author Robin Christ
  */
-public class ConnectorTestMain {
+public class TestMain {
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         String firstName = "Hubi";
         String lastName = "Schmacht";
         String bluetoothName = "Lebensraumbaum";
-        String bluetoothAdress = "";
-
+        String bluetoothAdress = "08ECA95BC895";
+        
         DatabaseManager dm = new DatabaseManager();
-//        dm.createUser(firstName, lastName, mailAdress, password, bluetoothName, bluetoothAdress);
-
+        
         EyDashGoogleConnector e = new EyDashGoogleConnector();
-
-        File token = null;
-        try {
+        
+//        File token = null;
+//        try {
 //            token = e.getToken();
 //            System.out.println(token.getAbsolutePath());
 //
@@ -46,17 +50,22 @@ public class ConnectorTestMain {
 //            }
 //            System.out.println("Exists?: " + token.exists());
 
-            EyDashUser user = dm.getUserByID(33);
-            System.out.println(user.getFirstName());
-            List<String> appointments = e.getAppointments(user.getToken());
-            EyDashUser user2 = dm.getUserByID(34);
-            System.out.println(user2.getFirstName());
-            List<String> appointments2 = e.getAppointments(user2.getToken());
+//            EyDashUser user = dm.getUserByID(33);
+//            System.out.println(user.getFirstName());
+//            List<String> appointments = e.getAppointments(user.getToken());
+//            EyDashUser user2 = dm.getUserByID(34);
+//            System.out.println(user2.getFirstName());
+//            List<String> appointments2 = e.getAppointments(user2.getToken());
 
-        } catch (GeneralSecurityException ex) {
-            Logger.getLogger(ConnectorTestMain.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ConnectorTestMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        } catch (GeneralSecurityException | IOException ex) {
+//            ex.printStackTrace();
+//        }
+        
+        DisplayController dc = new DisplayController();
+        new Thread(dc).start();
+        
+        BluetoothDeviceFinder bdf = new BluetoothDeviceFinder(dm);
+        new Thread(bdf).start();
     }
+    
 }
