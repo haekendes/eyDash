@@ -47,7 +47,8 @@ public class EyDashGoogleConnector {
     private final List<String> SCOPES = Collections.singletonList(CalendarScopes.CALENDAR_READONLY);
     private final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
-    private final String tokenDir = "tokens";
+    private final String tokenDir = "/tokens";
+    private final String tokenName = "/StoredCredential";
 
     public EyDashGoogleConnector() {
     }
@@ -72,11 +73,12 @@ public class EyDashGoogleConnector {
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
         new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
 
-        return new File(tokenDir + "\\StoredCredential");
+        
+        return new File(tokenDir + tokenName);
     }
 
     private File tokenFile(byte[] token) {
-        Path path = Paths.get(tokenDir + "\\StoredCredential");
+        Path path = Paths.get(tokenDir + tokenName);
         try {
             Files.write(path, token);
         } catch (IOException ex) {
