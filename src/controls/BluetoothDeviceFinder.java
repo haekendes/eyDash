@@ -54,6 +54,11 @@ public class BluetoothDeviceFinder implements Runnable {
         this.formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     }
 
+    private void getUserInfo(RemoteDevice btDevice) {
+        EyDashUser user = dm.getUserByBluetoothAdress(btDevice.getBluetoothAddress());
+        System.out.println(user.getId() + " | " + user.getFirstName() + " | " + user.getLastName());
+    }
+
     @Override
     public void run() {
         while (isRunning) {
@@ -102,8 +107,7 @@ public class BluetoothDeviceFinder implements Runnable {
             public void deviceDiscovered(RemoteDevice btDevice, DeviceClass cod) {
                 System.out.println("Device " + btDevice.getBluetoothAddress() + " found");
 
-                EyDashUser user = dm.getUserByBluetoothAdress(btDevice.getBluetoothAddress());
-                System.out.println(user.getId() + " | " + user.getFirstName() + " | " + user.getLastName());
+                getUserInfo(btDevice);
 
                 getNewDevices().add(btDevice);
 
