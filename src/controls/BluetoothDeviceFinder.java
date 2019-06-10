@@ -5,8 +5,6 @@
  */
 package controls;
 
-import com.eyDash.databaseManager.DatabaseManager;
-import com.eyDash.entities.EyDashUser;
 import com.intel.bluetooth.RemoteDeviceHelper;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -42,21 +40,16 @@ public class BluetoothDeviceFinder implements Runnable {
     private boolean isRunning;
 
     private SimpleDateFormat formatter;
+    
+    private MainController controller;
 
-    private DatabaseManager dm;
-
-    public BluetoothDeviceFinder(DatabaseManager dm) {
-        this.dm = dm;
+    public BluetoothDeviceFinder(MainController controller) {
+        this.controller = controller;
 
         this.newDevices = new ArrayList();
         this.discoveredDevices = new ArrayList();
         this.isRunning = true;
         this.formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-    }
-
-    private void getUserInfo(RemoteDevice btDevice) {
-        EyDashUser user = dm.getUserByBluetoothAdress(btDevice.getBluetoothAddress());
-        System.out.println(user.getId() + " | " + user.getFirstName() + " | " + user.getLastName());
     }
 
     @Override
@@ -96,6 +89,10 @@ public class BluetoothDeviceFinder implements Runnable {
                 } catch (InterruptedException ex) {
                 }
                 System.out.println(newDevices.size() + " device(s) found");
+                
+                //Anweisungen an andere Klassen, nachdem die Suche beendet ist
+                controller.afterDeviceSearch();
+                //Ende
             }
         }
     }
@@ -107,7 +104,9 @@ public class BluetoothDeviceFinder implements Runnable {
             public void deviceDiscovered(RemoteDevice btDevice, DeviceClass cod) {
                 System.out.println("Device " + btDevice.getBluetoothAddress() + " found");
 
-                getUserInfo(btDevice);
+                //Anweisungen an andere Klassen
+                controller.saveUser(btDevice);
+                //Ende
 
                 getNewDevices().add(btDevice);
 
@@ -149,6 +148,15 @@ public class BluetoothDeviceFinder implements Runnable {
         } catch (BluetoothStateException ex) {
             Logger.getLogger(BluetoothDeviceFinder.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    /**
+     * Not used for now
+     * @param btDevice 
+     */
+    private void getUserInfo(RemoteDevice btDevice) {
+//        EyDashUser user = dm.getUserByBluetoothAdress(btDevice.getBluetoothAddress());
+//        System.out.println(user.getId() + " | " + user.getFirstName() + " | " + user.getLastName());
     }
 
     /**

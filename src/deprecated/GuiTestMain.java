@@ -20,7 +20,6 @@ public class GuiTestMain {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             Screen screen = new Screen();
-            screen.clock();
         });
         
     }

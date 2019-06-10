@@ -46,12 +46,12 @@ public class ConnectorTestMain {
             }
             System.out.println("Exists?: " + token.exists());
 
-            EyDashUser user = dm.getUserByID(33);
-            System.out.println(user.getFirstName());
-            List<String> appointments = e.getAppointments(user.getToken());
-            EyDashUser user2 = dm.getUserByID(34);
-            System.out.println(user2.getFirstName());
-            List<String> appointments2 = e.getAppointments(user2.getToken());
+//            EyDashUser user = dm.getUserByID(33);
+//            System.out.println(user.getFirstName());
+//            List<String> appointments = e.getAppointments(user.getToken());
+//            EyDashUser user2 = dm.getUserByID(34);
+//            System.out.println(user2.getFirstName());
+//            List<String> appointments2 = e.getAppointments(user2.getToken());
 
         } catch (GeneralSecurityException ex) {
             Logger.getLogger(ConnectorTestMain.class.getName()).log(Level.SEVERE, null, ex);
