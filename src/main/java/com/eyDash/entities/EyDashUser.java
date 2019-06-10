@@ -6,12 +6,14 @@
 package com.eyDash.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -41,6 +43,9 @@ public class EyDashUser implements Serializable {
     
     @Column(name = "bluetoothadress")
     private String bluetoothAdress;
+    
+    @Transient
+    private List<String> appointments;
 
     public Integer getId() {
         return id;
@@ -143,5 +148,19 @@ public class EyDashUser implements Serializable {
      */
     public void setToken(byte[] token) {
         this.token = token;
+    }
+
+    /**
+     * @return the appointments
+     */
+    public List<String> getAppointments() {
+        return appointments;
+    }
+
+    /**
+     * @param appointments the appointments to set
+     */
+    public void setAppointments(List<String> appointments) {
+        this.appointments = appointments;
     }
 }

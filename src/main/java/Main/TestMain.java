@@ -30,11 +30,11 @@ public class TestMain {
         DatabaseManager dm = new DatabaseManager();
 //        dm.createUser(firstName, lastName, mailAdress, password, bluetoothName, bluetoothAdress);
         
-        EyDashUser user = dm.getUserByPhoneNumber(25);
-        System.out.println(user.getId() + " | " + user.getFirstName() + " | " + user.getLastName());
+//        EyDashUser user = dm.getUserByPhoneNumber(25);
+//        System.out.println(user.getId() + " | " + user.getFirstName() + " | " + user.getLastName());
         
-        EyDashUser user2 = dm.getUserByID(3);
-        System.out.println(user2.getId() + " | " + user2.getFirstName() + " | " + user2.getLastName());
+//        EyDashUser user2 = dm.getUserByID(3);
+//        System.out.println(user2.getId() + " | " + user2.getFirstName() + " | " + user2.getLastName());
     }
     
 }
