@@ -410,3 +410,12 @@ Danach öffnet sich der Browser, in dem ein Google Account ausgewählt/eingelogg
 Hier wird nach Zugriffsrechten gefragt.
 Bei Bestätigung wird der Zugriffstoken heruntergeladen und als byte[] mit allen anderen Informationen zusammen in der lokalen Datenbank gespeichert.
 Damit ist die Nutzererstellung abgeschlossen.
+
+____________________________________________________________________
+
+SQL und Hibernate
+
+Anscheinend verwendet jede Datenbank eine leicht andere Art von SQL, in anderen Worten ist SQL nicht völlig standardisiert. Um mit Hibernate auf eine SQL Datenbank zugreifen zu können, ist es notwendig, in dem Hibernate Projekt zu definieren, welche Datenbank verwendet wird, damit Hibernate sich auf die jeweilig verwendete Art von SQL einstellen kann.
+Dies wird in der persistence.xml als <property> unter dem Namen "hibernate.dialect" angegeben, der Wert für dieses Projekt ist "org.hibernate.dialect.PostgreSQLDialect".
+Dies nicht anzugeben führt nicht direkt zu Exceptions; erst im Lauf der Entwicklung ist uns dieser Fehler aufgefallen, als plötzlich und unerwartet eine Exception flog, obwohl das Projekt vorher ohne jene property funktionierte.
+
