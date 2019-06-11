@@ -40,16 +40,19 @@ public class BluetoothDeviceFinder implements Runnable {
     private boolean isRunning;
 
     private SimpleDateFormat formatter;
-    
+
     private MainController controller;
 
-    public BluetoothDeviceFinder(MainController controller) {
-        this.controller = controller;
-
+    public BluetoothDeviceFinder() {
         this.newDevices = new ArrayList();
         this.discoveredDevices = new ArrayList();
         this.isRunning = true;
         this.formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+    }
+
+    public BluetoothDeviceFinder(MainController controller) {
+        this();
+        this.controller = controller;
     }
 
     @Override
@@ -89,9 +92,11 @@ public class BluetoothDeviceFinder implements Runnable {
                 } catch (InterruptedException ex) {
                 }
                 System.out.println(newDevices.size() + " device(s) found");
-                
+
                 //Anweisungen an andere Klassen, nachdem die Suche beendet ist
-                controller.afterDeviceSearch();
+                if (controller != null) {
+                    controller.afterDeviceSearch();
+                }
                 //Ende
             }
         }
@@ -105,7 +110,9 @@ public class BluetoothDeviceFinder implements Runnable {
                 System.out.println("Device " + btDevice.getBluetoothAddress() + " found");
 
                 //Anweisungen an andere Klassen
-                controller.saveUser(btDevice);
+                if (controller != null) {
+                    controller.saveUser(btDevice);
+                }
                 //Ende
 
                 getNewDevices().add(btDevice);
@@ -149,10 +156,11 @@ public class BluetoothDeviceFinder implements Runnable {
             Logger.getLogger(BluetoothDeviceFinder.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * Not used for now
-     * @param btDevice 
+     *
+     * @param btDevice
      */
     private void getUserInfo(RemoteDevice btDevice) {
 //        EyDashUser user = dm.getUserByBluetoothAdress(btDevice.getBluetoothAddress());
