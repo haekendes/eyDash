@@ -429,3 +429,5 @@ Den Anfang bildet der BluetoothDeviceFinder; solange dieser kein bluetooth Gerä
 Als nächstes müssen die gefundenen Geräte mit den registrierten Geräten der Datenbank abgeglichen werden. Ist ein registriertes Gerät dabei, werden direkt die dazugehörigen Nutzerdaten geladen und temporär im DatabaseManager gespeichert.
 Ist die Suche abgeschlossen, werden die temporär gespeicherten Nutzerdaten an die GUI übergeben, um dort bis zur nächsten Auffrischung gespeichert zu bleiben. Die temporären Nutzerdaten im DatabaseManager werden gelöscht.
 So wird sichergestellt, dass nie auf eine leere Nutzerdatenliste zugegriffen wird, was zum Programmabsturz führen würde.
+Die in der GUI gespeicherten Daten werden durch diese nun permanent angezeigt und in ~10 Sekunden Intervallen gänzlich erneuert.
+Wird die Bluetooth Verbindung zu einem Nutzer unterbrochen, so verschwindet dessen Anzeige im nächsten Intervall von der GUI.
