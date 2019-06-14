@@ -431,3 +431,21 @@ Ist die Suche abgeschlossen, werden die temporär gespeicherten Nutzerdaten an d
 So wird sichergestellt, dass nie auf eine leere Nutzerdatenliste zugegriffen wird, was zum Programmabsturz führen würde.
 Die in der GUI gespeicherten Daten werden durch diese nun permanent angezeigt und in ~10 Sekunden Intervallen gänzlich erneuert.
 Wird die Bluetooth Verbindung zu einem Nutzer unterbrochen, so verschwindet dessen Anzeige im nächsten Intervall von der GUI.
+
+Bluetooth Erkennung und GUI laufen in separaten Threads, deswegen kann es aus Gründen der Absturzsicherheit mehr als ein Intervall dauern, bis die Nutzerdaten bei der GUI ankommen.
+
+
+____________________________________________________________________
+
+Umsetzung der Nutzerregistrierung
+
+Da im angestrebten Anwendungsbereich nur selten neue Nutzer hinzugefügt werden, und vorerst nur fachlich mit der Substanz vertraute Anwender die Nutzer verwalten, wird die Nutzerregistrierung über die Linux Konsole des Raspberrys ablaufen.
+Dafür wird in der Main Klasse des Projekts die Möglichkeit der Verwendung des Parameters "u" beim starten des Programms über die Konsole eingeführt.
+Gewöhnlich wird das Programm per "sudo java -jar eyDash.jar" gestartet.
+Nun wird per "sudo java -jar eyDash.jar u" nicht das normale Programm mit gewöhnlichem Funktionsablauf gestartet, stattdessen kann der Anwender Vor- und Nachnamen sowie Bluetoothnamen in die Konsole eingeben.
+Erst daraufhin wird der BluetoothDeviceFinder initialisiert, der dann nach einem gegenwärtigen Bluetooth Gerät mit dem eingegebenen Namen sucht.
+Wird eines gefunden, wird der Anwender aufgefordert, eine bereitgestellte URL per Internetbrowser aufzurufen.
+Hier meldet sich der Anwender mit einem Google Konto an und überreicht dem eyDash Programm die Zulassung zum Zugriff auf den Google Calendar des Google Kontos.
+Ist dieser Schritt abgeschlossen, wird der DatabaseManager initialisiert, der automatisch die vorher eingegebenen Namen, die gefundene Bluetooth Adresse und den Google Calendar token in die Datenbank als neuen Benutzer einspeichert.
+
+Nun kann das eyDash Programm normal gestartet werden, und wird der nun registrierte Nutzer anhand seiner Bluetooth Adresse erkannt, so werden seine Termine auf dem Dashboard dargestellt.
