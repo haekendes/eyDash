@@ -44,7 +44,7 @@ Installation eyDash Software:
   
 # 3. Source Code aufsetzen
 
-- eyDash, eyDashDatabaseManager sind Netbeans Projekte
+- eyDash & eyDashDatabaseManager sind Netbeans Projekte
 - eyDashGoogleConnector ist ein Gradle Projekt, kann per Gradle Plugin in Netbeans importiert werden
 - eyDashLibraries sind benötigte Bibliotheken
 - build beinhaltet die neuste, direkt ausführbare Version des Programms
