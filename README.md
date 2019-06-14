@@ -1,4 +1,4 @@
-1. Installation
+# 1. Installation
 
 Hardware Voraussetzung:
 - Raspberry Pi mit Wlan & Bluetooth
@@ -35,7 +35,7 @@ Installation eyDash Software:
 - eyDash.jar zusammen mit lib Ordner in beliebigen Ordner des Raspberrys kopieren
   
   
-2. Programmstart
+# 2. Programmstart
   
 - Per Linux Konsole in das Installationsverzeichnis der eyDash Software navigieren
 -> Befehl "sudo java -jar eyDash.jar" führt das Programm normal aus
