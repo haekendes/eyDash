@@ -40,3 +40,17 @@ Installation eyDash Software:
 - Per Linux Konsole in das Installationsverzeichnis der eyDash Software navigieren
   - Befehl "sudo java -jar eyDash.jar" führt das Programm normal aus
   - Befehl "sudo java -jar eyDash.jar u" registriert einen neuen Benutzer
+  
+  
+# 3. Source Code aufsetzen
+
+- eyDash, eyDashDatabaseManager sind Netbeans Projekte
+- eyDashGoogleConnector ist ein Gradle Projekt, kann per Gradle Plugin in Netbeans importiert werden
+- eyDashLibraries sind benötigte Bibliotheken
+- build beinhaltet die neuste, direkt ausführbare Version des Programms
+
+eyDash ist das Hauptprojekt. eyDashDatabaseManager und eyDashGoogleConnector müssen separat kompiliert und als Bibliotheken zum eyDash Projekt hinzugefügt werden, da das eyDash Hauptprojekt diese beiden Unterprojekte verwendet.
+Auch die Bibliotheken in eyDashLibraries müssen dem eyDash Hauptprojekt als Bibliotheken hinzugefügt werden.
+
+Bis auf den DisplayController des Hauptprojekts sollte jeder Teil aller Projekte auch auf einem Windows PC ausführbar sein.
+Der DisplayController läuft nur auf Linux.
