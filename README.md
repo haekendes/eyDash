@@ -38,5 +38,5 @@ Installation eyDash Software:
 # 2. Programmstart
   
 - Per Linux Konsole in das Installationsverzeichnis der eyDash Software navigieren
-- Befehl "sudo java -jar eyDash.jar" führt das Programm normal aus
-- Befehl "sudo java -jar eyDash.jar u" registriert einen neuen Benutzer
+  - Befehl "sudo java -jar eyDash.jar" führt das Programm normal aus
+  - Befehl "sudo java -jar eyDash.jar u" registriert einen neuen Benutzer
