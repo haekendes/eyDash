@@ -1,4 +1,10 @@
+Github Link:
+https://github.com/haekendes/eyDash
 
+Website:
+https://eydash.home.blog/
+
+____________________________________________________________________
 
 2019-04-16
 Inbetriebnahme des Raspberry pi erfolgreich.
