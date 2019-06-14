@@ -15,8 +15,8 @@ Software Voraussetzung:
 
 Konfiguration des Raspberrys:
 - PostgreSQL Datenbank mit pgAdmin installieren
-  -> Neue Datenbank anlegen, Name: "test", PW: "kuchen123"
-  -> Anlegen der Tabellen mithilfe der SQL Datei unter
+  - Neue Datenbank anlegen, Name: "test", PW: "kuchen123"
+  - Anlegen der Tabellen mithilfe der SQL Datei unter
       eyDashDatabaseManager/sqlFile/eyDash - Initialize Database PostgreSQL.sql
 - WiringPi per apt-get installieren
 - PIR Bewegungssensor anschließen
@@ -24,7 +24,7 @@ Konfiguration des Raspberrys:
   - GND (Masse) mit Pin 6
   - Dout (Digital out) zur Datenübertragung mit Pin 7, auch GPIO 4
 - xscreensaver per apt-get installieren
-  -> xscreensaver abschalten, damit der Bildschirm nicht automatisch abgeschaltet wird.
+  - xscreensaver abschalten, damit der Bildschirm nicht automatisch abgeschaltet wird.
   
   
 Konfiguration Smartphone/anderes Bluetoothgerät:
@@ -38,5 +38,5 @@ Installation eyDash Software:
 # 2. Programmstart
   
 - Per Linux Konsole in das Installationsverzeichnis der eyDash Software navigieren
--> Befehl "sudo java -jar eyDash.jar" führt das Programm normal aus
--> Befehl "sudo java -jar eyDash.jar u" registriert einen neuen Benutzer
+- Befehl "sudo java -jar eyDash.jar" führt das Programm normal aus
+- Befehl "sudo java -jar eyDash.jar u" registriert einen neuen Benutzer
