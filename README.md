@@ -1,3 +1,5 @@
+Dieses Projekt wurde für das Modul Ubiquitous Computing im 6. Semester des Studiengangs Computervisualistik & Design an der Hochschule Hamm-Lippstadt erstellt.
+
 eyDash ist ein Dashboard, das die Termine eingetragener Nutzer in einer Bildschirm-GUI anzeigt. Die Termine werden von der Google Calendar API bezogen. Das eigentliche Programm ist dafür gemacht, auf einem RaspberryPi 3 zu laufen. Dieses soll mit dem Bildschirm verbunden sein, auf dem die Termine angezeigt werden. Der Bildschirm wird durch einen Bewegungssensor am RaspberryPi ein- und nach bestimmter Zeit ohne Bewegungsmeldung wieder ausgeschaltet. Die zum Benutzer passenden Termine werden abgerufen, indem die Anwesenheit des Benutzers vom RaspberryPi per Bluetooth des Nutzersmartphones registriert wird. Nutzerdaten werden auf einem PostgreSQL Server gespeichert, der auch auf dem RaspberryPi läuft.
 
 # 1. Installation
